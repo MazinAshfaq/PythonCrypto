@@ -22,11 +22,14 @@ class model(Model):
 
         # Make sure our database exists
         connection = sqlite3.connect(DB_FILE)
+        print("setting connetion to DB_FILE")
         cursor = connection.cursor()
         try:
-            cursor.execute("select count(rowid) from coursereviews")
+            cursor.execute("select count(department) from coursereviews")
+            print("Trying to count database")
         except sqlite3.OperationalError:
             cursor.execute("create table coursereviews (department text, coursenumber integer, quarter text, year integer, instructor text, review text)")
+            print("CREATED TABLE IF NOT CREATED ALREADY")
         cursor.close()
 
     def select(self):
@@ -55,7 +58,7 @@ class model(Model):
         params = {'department':department, 'coursenumber':coursenumber, 'quarter':quarter, 'year':year, 'instructor':instructor, 'review':review }
         connection = sqlite3.connect(DB_FILE)
         cursor = connection.cursor()
-        cursor.execute("insert into coursereview (department, coursenumber, quarter, year, instructor, review) VALUES (:department, :coursenumber, :quarter, :year, :instructor, :review)", params)
+        cursor.execute("insert into coursereviews (department, coursenumber, quarter, year, instructor, review) VALUES (:department, :coursenumber, :quarter, :year, :instructor, :review)", params)
 
         connection.commit()
         cursor.close()

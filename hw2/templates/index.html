@@ -1,0 +1,11 @@
+{% extends "layout.html" %} {% block content %}
+<h2>Course Reviews</h2>
+
+<h3>Enter Course Review <a href="{{ url_for('sign') }}">Here!</a></h3>
+<h3>Previous Reviews</h3>
+{% for entry in entries %}
+<p class="entry">
+  {{ entry.department }} &lt;{{ entry.coursenumber }}&gt; {{ entry.quarter }} {{
+  entry.year }} {{ entry.instructor }} {{ entry.review }}
+</p>
+{% endfor %} {% endblock %}

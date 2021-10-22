@@ -5,5 +5,5 @@ import gbmodel
 class Index(MethodView):
     def get(self):
         model = gbmodel.get_model()
-        entries = [dict(name=row[0], email=row[1], signed_on=row[2], message=row[3] ) for row in model.select()]
+        entries = [dict(department=row[0], coursenumber=row[1], quarter=row[2], year=row[3], instructor=row[4],review=row[5]) for row in model.select()]
         return render_template('index.html',entries=entries)

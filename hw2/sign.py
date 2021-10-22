@@ -12,5 +12,5 @@ class Sign(MethodView):
         Redirect to index when completed.
         """
         model = gbmodel.get_model()
-        model.insert(request.form['name'], request.form['email'], request.form['message']) #Calls function to insert into database. 
+        model.insert(request.form['department'], request.form['coursenumber'], request.form['quarter'],request.form['year'], request.form['instructor'],request.form['review']) #Calls function to insert into database. 
         return redirect(url_for('index'))
