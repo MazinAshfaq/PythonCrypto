@@ -24,6 +24,7 @@ form {
   margin: 0.1em auto;
   padding: 0.1em;
   width: 504px;
+  height: 100vh;
 }
 .entry {
   margin-bottom: 2em;
