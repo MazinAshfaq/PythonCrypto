@@ -1,5 +1,5 @@
-# Use the Python version of alpine as the base image
-FROM google/cloud-sdk as base
+# Use Google Cloud SDK's container as the base image
+FROM python:alpine as base
 
 FROM base as builder
 
@@ -22,6 +22,7 @@ WORKDIR /app
 
 # Install the Python packages specified by requirements.txt into the container
 RUN pip install --no-cache -r requirements.txt
+
 
 # Set the program that is invoked upon container instantiation
 ENTRYPOINT ["python"]
