@@ -23,7 +23,6 @@ WORKDIR /app
 # Install the Python packages specified by requirements.txt into the container
 RUN pip install --no-cache -r requirements.txt
 
-
 # Set the program that is invoked upon container instantiation
 ENTRYPOINT ["python"]
 

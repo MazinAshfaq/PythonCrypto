@@ -1,5 +1,7 @@
 #ignore database
-entries.db
+entries.
+
+env
 
 #ignore pycache
 __pycache__/  
