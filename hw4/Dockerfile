@@ -1,5 +1,5 @@
 # Use the Python version of alpine as the base image
-FROM python:alpine as base
+FROM google/cloud-sdk as base
 
 FROM base as builder
 
