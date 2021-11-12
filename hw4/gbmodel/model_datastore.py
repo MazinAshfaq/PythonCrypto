@@ -22,7 +22,7 @@ def from_datastore(entity):
 
 class model(Model):
     def __init__(self):
-        self.client = datastore.Client('YOUR_PROJECT_ID')
+        self.client = datastore.Client('cloud-f21-mazin-ashfaq-ashfaq')
 
     def select(self):
         query = self.client.query(kind = 'HW4')

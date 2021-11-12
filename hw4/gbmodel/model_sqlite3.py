@@ -1,17 +1,3 @@
-"""
-Data is stored in a SQLite database that looks something like the following:
-
-+------------+------------------+------------+----------------+--------------+----------+
-| Department | Course Number    | Quarter    | Year           | Instructor   | Review   |
-+============+==================+============+----------------+--------------+----------+
-| CS         | CS430            | Fall       | 2021           | Wu-Chang     | Great!   |
-+------------+------------------+------------+----------------+--------------+----------+
-
-This is created with the following SQL:
-
-    create table coursereviews (department text, coursenumber integer, quarter text, year integer, instructor text, review text);
-
-"""
 from datetime import date
 from .Model import Model
 import sqlite3
