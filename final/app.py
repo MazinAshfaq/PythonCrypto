@@ -8,11 +8,10 @@ def home():
     coinTable = functions.fetchCoins()
     return render_template("home.html", coinTable = coinTable)
 
-@app.route("/Charts")
-def chart():
-    data = functions.fetchChartData()
-    return render_template("chart.html", btc = data[0], eth=data[1])
-
-
+@app.route("/<coin>")
+def user(coin):
+    coinData = functions.fetchChartData(coin)
+    return render_template("chart.html", coin = coin, coinData=coinData)
+    
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

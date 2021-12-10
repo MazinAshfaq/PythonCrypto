@@ -8,56 +8,41 @@ import plotly.express as px
 # Create client 
 cg = CoinGeckoAPI()
 
-def fetchChartData(): 
+def fetchChartData(coin): 
     #Get coin data
+    coinData = cg.get_coin_market_chart_by_id(id=coin,vs_currency='usd',days='1')
     btc = cg.get_coin_market_chart_by_id(id='bitcoin',vs_currency='usd',days='1')
     eth = cg.get_coin_market_chart_by_id(id='ethereum',vs_currency='usd',days='1')
 
     #Grab prices from response
+    coin_prices = coinData['prices']
     btc_prices = btc['prices']
     eth_prices = eth['prices']
 
-    #Format btc data and save to csv
-    btc_df = pd.DataFrame(btc_prices, columns=['dateTime', 'price'])
-    btc_df.dateTime = pd.to_datetime(btc_df.dateTime, unit='ms')
-    btc_df.set_index('dateTime', inplace=True)
-    btc_df.to_csv('btc_candle.csv')
 
-    #Format eth data and save to csv
-    eth_df = pd.DataFrame(eth_prices, columns=['dateTime', 'price'])
-    eth_df.dateTime = pd.to_datetime(eth_df.dateTime, unit='ms')
-    eth_df.set_index('dateTime', inplace=True)
-    eth_df.to_csv('eth_candle.csv')
+    #Format coin data and save to csv
+    coin_df = pd.DataFrame(coin_prices, columns=['dateTime', 'price'])
+    coin_df.dateTime = pd.to_datetime(coin_df.dateTime, unit='ms')
+    coin_df.set_index('dateTime', inplace=True)
+    coin_df.to_csv(coin +'_candle.csv')
 
     #Load CSV data into variable
-    eth_df = pd.read_csv('./eth_candle.csv')
+    csv = './'+coin+'_candle.csv'
+    coin_df = pd.read_csv(csv)
 
     #Create Plot
-    eth_chart = go.Figure(
+    coin_chart = go.Figure(
         [go.Scatter(
-        x = eth_df['dateTime'],
-        y = eth_df['price'],
+        x = coin_df['dateTime'],
+        y = coin_df['price'],
         )
     ]
     )
 
-    #Load CSV data into variable
-    btc_df = pd.read_csv('./btc_candle.csv')
+    # Convert graph to json to make it easier to pass 
+    coinGraphJSON = json.dumps(coin_chart, cls=plotly.utils.PlotlyJSONEncoder)
 
-    #Create Plot
-    btc_chart = go.Figure(
-        [go.Scatter(
-        x = btc_df['dateTime'],
-        y = btc_df['price'],
-        )
-    ]
-    )
-
-    #Convert Chart into json data 
-    graph1JSON = json.dumps(btc_chart, cls=plotly.utils.PlotlyJSONEncoder)
-    graph2JSON = json.dumps(eth_chart, cls=plotly.utils.PlotlyJSONEncoder)
-
-    return [graph1JSON, graph2JSON]
+    return coinGraphJSON
 
 def fetchCoins():
 
@@ -71,7 +56,7 @@ def fetchCoins():
     #Create table
     coinTable = df_market.to_html(classes='table thead-dark table-striped table-bordered table-hover')
     coinTable = coinTable.replace("right", "center" )
-    
+
     
     # #Dataframe to array of objects
     # coinDataArray = df_market.to_dict('index')
