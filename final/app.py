@@ -1,15 +1,16 @@
-from flask import Flask
+from flask import Flask,render_template
 from pycoingecko import CoinGeckoAPI
 
 # Create client 
 cg = CoinGeckoAPI()
 
-print(cg);
+cg.get_coins_list()
+
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Home page"
+    return render_template("home.html")
 
 
 if __name__ == "__main__":
