@@ -10,15 +10,14 @@ def from_datastore(entity):
         [Entity{key: (kind, id), prop: val, ...}]
 
     This returns:
-        [ name, email, date, message ]
-    where name, email, and message are Python strings
-    and where date is a Python datetime
+        [ department, coursenumber, quarter , year , instructor ,review ]
+    where department, coursenumber, quarter , year , instructor and review are Python strings
     """
     if not entity:
         return None
     if isinstance(entity, list):
         entity = entity.pop()
-    return [entity['name'],entity['email'],entity['date'],entity['message']]
+    return [entity['department'],entity['coursenumber'],entity['quarter'],entity['year'],entity['instructor'],entity['review']]
 
 class model(Model):
     def __init__(self):
@@ -29,14 +28,16 @@ class model(Model):
         entities = list(map(from_datastore,query.fetch()))
         return entities
 
-    def insert(self,name,email,message):
-        key = self.client.key('Review')
+    def insert(self, department, coursenumber, quarter, year, instructor, review):
+        key = self.client.key('HW4')
         rev = datastore.Entity(key)
         rev.update( {
-            'name': name,
-            'email' : email,
-            'date' : datetime.today(),
-            'message' : message
+            'department': department,
+            'coursenumber' : coursenumber,
+            'quarter' : quarter,
+            'year' : year,
+            'instructor' : instructor,
+            'review' : review
             })
         self.client.put(rev)
         return True
