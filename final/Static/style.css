@@ -1,4 +1,9 @@
-.plotly-graph-div {
-  width: 500px;
+#chart1 {
+  width: 80%;
+  height: 500px;
+}
+
+#chart2 {
+  width: 80%;
   height: 500px;
 }
