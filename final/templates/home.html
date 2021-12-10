@@ -1,26 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../Static/style.css" />
-    <title>CryptoDash</title>
-  </head>
+{% extends "base.html" %} {%block content%}
   <body>
-    <h1>CryptoDash</h1>
-    <h4>Bitcoin</h4>
-    <div id="chart1"></div>
-    <h4>Ethereum</h4>
-    <div id="chart2"></div>
+    <h2>Home Page</h2>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
   </body>
-
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script type="text/javascript">
-    btc_graph = {{ btc | safe}};
-    Plotly.plot("chart1", btc_graph,{});
-
-    eth_graph = {{ eth| safe}};
-    Plotly.plot("chart2", eth_graph,{});
-  </script>
 </html>
+{%endblock%}

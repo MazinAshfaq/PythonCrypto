@@ -1,0 +1,18 @@
+{% extends "base.html" %} {%block content%}
+<body>
+  <h2>Charts Page</h2>
+  <h4>Bitcoin</h4>
+  <div id="chart1"></div>
+  <h4>Ethereum</h4>
+  <div id="chart2"></div>
+</body>
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script type="text/javascript">
+  btc_graph = {{ btc | safe}};
+  Plotly.plot("chart1", btc_graph,{});
+
+  eth_graph = {{ eth| safe}};
+  Plotly.plot("chart2", eth_graph,{});
+</script>
+{%endblock%}
