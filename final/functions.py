@@ -4,6 +4,7 @@ import json
 import plotly.graph_objs as go
 import plotly
 import plotly.express as px
+from os import path
 
 # Create client 
 cg = CoinGeckoAPI()
@@ -24,17 +25,12 @@ def fetchChartData(coin):
     coin_df = pd.DataFrame(coin_prices, columns=['dateTime', 'price'])
     coin_df.dateTime = pd.to_datetime(coin_df.dateTime, unit='ms')
     coin_df.set_index('dateTime', inplace=True)
-    coin_df.to_csv(coin +'_candle.csv')
-
-    #Load CSV data into variable
-    csv = './'+coin+'_candle.csv'
-    coin_df = pd.read_csv(csv)
 
     #Create Plot
     coin_chart = go.Figure(
         [go.Scatter(
-        x = coin_df['dateTime'],
-        y = coin_df['price'],
+        x = coin_df.index,
+        y = coin_df.price,
         )
     ]
     )
