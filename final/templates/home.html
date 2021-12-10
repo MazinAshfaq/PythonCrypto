@@ -1,6 +1,23 @@
-{% extends "base.html" %} {%block content%}
+{% extends "base.html" %} 
+{%block content%}
   <body>
-    <h2>Home Page</h2>
+
+    <div class="container">
+      <figure class="text-center"> Home Page</figure>
+      <div class="row">
+        <div class="col-sm">
+          <div class="card">
+            <div class="card-header">
+              Featured Coin
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{coins}}</h5>
+              <a href="{{ url_for('chart')}}" class="btn btn-primary">View Bitcoin Prices</a>
+            </div>
+          </div>
+        </div>
+    
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"

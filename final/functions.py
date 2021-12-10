@@ -8,7 +8,7 @@ import plotly.express as px
 # Create client 
 cg = CoinGeckoAPI()
 
-def fetchData(): 
+def fetchChartData(): 
     #Get coin data
     btc = cg.get_coin_market_chart_by_id(id='bitcoin',vs_currency='usd',days='1')
     eth = cg.get_coin_market_chart_by_id(id='ethereum',vs_currency='usd',days='1')
@@ -58,3 +58,16 @@ def fetchData():
     graph2JSON = json.dumps(eth_chart, cls=plotly.utils.PlotlyJSONEncoder)
 
     return [graph1JSON, graph2JSON]
+
+def fetchCoins():
+
+    #Fetch All Coin Prices
+    coin_market = cg.get_coins_markets(vs_currency='usd')
+    #Create dataframe
+    df_market = pd.DataFrame(coin_market, columns=['id','current_price'])
+    #Remove default index
+    coinData = df_market.set_index('id', inplace=True)
+
+    return coinData
+
+def createCoinTable(coinData):

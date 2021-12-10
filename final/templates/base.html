@@ -14,8 +14,44 @@
     <title>CryptoDash</title>
   </head>
   <body>
-    <h1>CryptoDash</h1>
     <!-- I could add a header here -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img
+            src="https://w7.pngwing.com/pngs/462/601/png-transparent-shiba-inu-dogecoin-iphone-6-iphone-4s-doge-mammal-carnivoran-dog-like-mammal.png"
+            alt=""
+            width="30"
+            height="24"
+            class="d-inline-block align-text-top"
+          />
+          CryptoDash
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="{{ url_for('home')}}"
+                >Home</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <!-- Main content for any page -->
     {% block content %} {%endblock%}
     <!-- I could also add a footer here -->
