@@ -5,8 +5,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    data = functions.fetchCoins()
-    return render_template("home.html", coins = data)
+    coinTable = functions.fetchCoins()
+    return render_template("home.html", coinTable = coinTable)
 
 @app.route("/Charts")
 def chart():

@@ -1,28 +1,54 @@
 {% extends "base.html" %} 
 {%block content%}
   <body>
-
     <div class="container">
-      <figure class="text-center"> Home Page</figure>
       <div class="row">
         <div class="col-sm">
+          
           <div class="card">
-            <div class="card-header">
-              Featured Coin
-            </div>
+            <h5 class="card-header">Coin List</h5>
             <div class="card-body">
-              <h5 class="card-title">{{coins}}</h5>
-              <a href="{{ url_for('chart')}}" class="btn btn-primary">View Bitcoin Prices</a>
+
+              {{coinTable | safe}}
+               <!-- <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Coin-Name</th>
+                <th scope="col">Current-Price</th>
+              </tr>
+            </thead>
+            <tbody id="mytable">
+              {% for coin in coinList %}
+              <tr>
+                <td>{{ coin.id }}</td>
+                <td>{{ coin.current_price }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table> -->
             </div>
           </div>
         </div>
-    
+    <!-- <script>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
+      buildTable()
+     
+     
+      function buildTable(){
+
+      let table = document.getElementById('mytable')
+
+      let data = {{coinsDataArray}}
+
+      for(let i = 0; i < data.length; i++){
+        let row = `<tr> 
+          <td> {data[i].id} </td>
+          <td> {data[i].current_price} </td>
+        </tr>`
+        table.innerHTML += row
+      }
+    }
+    </script> -->
   </body>
 </html>
 {%endblock%}

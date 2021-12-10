@@ -63,11 +63,17 @@ def fetchCoins():
 
     #Fetch All Coin Prices
     coin_market = cg.get_coins_markets(vs_currency='usd')
+
     #Create dataframe
     df_market = pd.DataFrame(coin_market, columns=['id','current_price'])
-    #Remove default index
-    coinData = df_market.set_index('id', inplace=True)
 
-    return coinData
+    df_market.rename(columns = {'id':'Coin-Name', 'current_price':'Current-Price'}, inplace = True)
+    #Create table
+    coinTable = df_market.to_html(classes='table thead-dark table-striped table-bordered table-hover')
+    coinTable = coinTable.replace("right", "center" )
+    
+    
+    # #Dataframe to array of objects
+    # coinDataArray = df_market.to_dict('index')
 
-def createCoinTable(coinData):
+    return coinTable
