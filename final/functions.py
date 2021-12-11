@@ -3,7 +3,6 @@ import pandas as pd
 import json
 import plotly.graph_objs as go
 import plotly
-import plotly.express as px
 from os import path
 
 # Create client 
@@ -59,5 +58,6 @@ def fetchCoins():
 
     return coinTable
 
+#Function To create links
 def make_clickable(val):
     return '<a href='+val+'>'+val+'</a>'

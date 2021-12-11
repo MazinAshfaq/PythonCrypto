@@ -1,0 +1,8 @@
+#ignore pycache
+__pycache__/  
+
+#ignore url
+project_url.txt
+
+#ignore screencast
+screencast_url.txt
