@@ -47,14 +47,17 @@ def fetchCoins():
 
     #Create dataframe
     df_market = pd.DataFrame(coin_market, columns=['id','current_price'])
+    df_market.rename(columns = {'id':'Coin-Name', 'current_price':'Current-Price'}, inplace = True) 
+    df_market = df_market.style.format({'Coin-Name' : make_clickable})
 
-    df_market.rename(columns = {'id':'Coin-Name', 'current_price':'Current-Price'}, inplace = True)
-    #Create table
-    coinTable = df_market.to_html(classes='table thead-dark table-striped table-bordered table-hover')
-    coinTable = coinTable.replace("right", "center" )
-
-    
-    # #Dataframe to array of objects
-    # coinDataArray = df_market.to_dict('index')
+    coinTable = df_market.to_html()
+    # #Create table
+    # coinTable = df_market.to_html(classes='table thead-dark table-striped table-bordered table-hover')
+    coinTable = coinTable.replace("right", "center")
+    coinTable = coinTable.replace("<table", "<table class=\"table table-striped \"")
+    #Create Links from each coin to its page 
 
     return coinTable
+
+def make_clickable(val):
+    return '<a href='+val+'>'+val+'</a>'

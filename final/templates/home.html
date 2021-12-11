@@ -8,47 +8,10 @@
           <div class="card">
             <h5 class="card-header">Coin List</h5>
             <div class="card-body">
-
-              {{coinTable | safe}}
-               <!-- <table class="table">
-            <thead class="thead-light">
-              <tr>
-                <th scope="col">Coin-Name</th>
-                <th scope="col">Current-Price</th>
-              </tr>
-            </thead>
-            <tbody id="mytable">
-              {% for coin in coinList %}
-              <tr>
-                <td>{{ coin.id }}</td>
-                <td>{{ coin.current_price }}</td>
-              </tr>
-            {% endfor %}
-            </tbody>
-          </table> -->
+              {{coinTable|safe }}
             </div>
           </div>
         </div>
-    <!-- <script>
-
-      buildTable()
-     
-     
-      function buildTable(){
-
-      let table = document.getElementById('mytable')
-
-      let data = {{coinsDataArray}}
-
-      for(let i = 0; i < data.length; i++){
-        let row = `<tr> 
-          <td> {data[i].id} </td>
-          <td> {data[i].current_price} </td>
-        </tr>`
-        table.innerHTML += row
-      }
-    }
-    </script> -->
   </body>
 </html>
 {%endblock%}
