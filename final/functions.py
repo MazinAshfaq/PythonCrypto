@@ -11,14 +11,9 @@ cg = CoinGeckoAPI()
 def fetchChartData(coin): 
     #Get coin data
     coinData = cg.get_coin_market_chart_by_id(id=coin,vs_currency='usd',days='1')
-    btc = cg.get_coin_market_chart_by_id(id='bitcoin',vs_currency='usd',days='1')
-    eth = cg.get_coin_market_chart_by_id(id='ethereum',vs_currency='usd',days='1')
 
     #Grab prices from response
     coin_prices = coinData['prices']
-    btc_prices = btc['prices']
-    eth_prices = eth['prices']
-
 
     #Format coin data and save to csv
     coin_df = pd.DataFrame(coin_prices, columns=['dateTime', 'price'])
@@ -33,7 +28,6 @@ def fetchChartData(coin):
         )
     ]
     )
-
     # Convert graph to json to make it easier to pass 
     coinGraphJSON = json.dumps(coin_chart, cls=plotly.utils.PlotlyJSONEncoder)
 
@@ -48,13 +42,10 @@ def fetchCoins():
     df_market = pd.DataFrame(coin_market, columns=['id','current_price'])
     df_market.rename(columns = {'id':'Coin-Name', 'current_price':'Current-Price'}, inplace = True) 
     df_market = df_market.style.format({'Coin-Name' : make_clickable})
-
+    #Create table
     coinTable = df_market.to_html()
-    # #Create table
-    # coinTable = df_market.to_html(classes='table thead-dark table-striped table-bordered table-hover')
     coinTable = coinTable.replace("right", "center")
     coinTable = coinTable.replace("<table", "<table class=\"table table-striped \"")
-    #Create Links from each coin to its page 
 
     return coinTable
 
