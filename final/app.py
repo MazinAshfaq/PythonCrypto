@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template, os
 import functions
 
 app = Flask(__name__)
@@ -14,4 +14,5 @@ def user(coin):
     return render_template("chart.html", coin = coin, coinData=coinData)
     
 if __name__ == "__main__":
-    app.run(debug=True)
+    PORT = (os.getenv('PORT')) if os.getenv('PORT') else 8080
+    app.run(host='0.0.0.0', port=PORT, debug=True)
