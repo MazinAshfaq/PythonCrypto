@@ -1,7 +1,0 @@
-#ignore database
-entries.db
-
-env
-
-#ignore pycache
-__pycache__/  
